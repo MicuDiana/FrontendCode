@@ -23,17 +23,37 @@ var employeesList = [
 
     }
 ];
+
+
 function showList() {
-    var myTable = '<table border="3"><tr><th><p class="bg-primary">First Name</p></th><th><p class="bg-primary">Last Name</p></th><th><p class="bg-primary">Phone</p></th><th><p class="bg-primary">Salary</p></th></tr>';
+    var myTable = '<table id = "mytable" class="table table-striped" border="3"><tr><th><p>First Name</p></th><th><p>Last Name</p></th><th><p>Phone</p></th><th><p>Salary</p></th><th><p">Delete</p></th><th><p>View</p></th></tr>';
+
     for(var i in employeesList) {
         myTable +=
-            '<tr><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' +
-            employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td></tr>';
-    }
-    myTable += '</table>';
+            '<tr id = "normalrows"><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' +
+            employeesList[i].phone + '</td><td>' + employeesList[i].salary +
+            '<td>' + '<button class =\'delrowbutton\' onclick = "deleteRow('+i+'); showList()"> Delete Row </button>'+'</td>'+
+            '<td>' + '<button class = \'viewbutton\' style="vertical-align:middle" onclick = "viewRow('+i+')"> <span> View Details </span></button>'+'</td>'+
+            '</td></tr>';
+
+
+    }   
+
+
+    myTable += '<tr> <td>' + "aa"+  '</td></tr></table>';
 
     var container = document.getElementById('listcontainer');
     container.innerHTML= myTable;
+}
+
+
+
+
+function viewRow(row) {
+    window.alert(employeesList[row].firstName + ' ' +employeesList[row].lastName+ ' '+ employeesList[row].phone + ' ' + employeesList[row].salary);
+}
+function deleteRow(row) {
+    delete employeesList[row];
 }
 
 function totalList() {
@@ -49,8 +69,7 @@ function totalList() {
 
 function deleteLast() {
 
-    employeesList.pop();
-
+        employeesList.pop();
 }
 var Employee = function (firstName, lastName, phone, salary) {
     this.firstName = firstName;
@@ -65,5 +84,4 @@ function addEmployee() {
     var phone = document.getElementById("phone").value;
     var salary = document.getElementById("salary").value;
     employeesList.push(new Employee(firstName, lastName, phone, salary));
-
 }
