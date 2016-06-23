@@ -21,11 +21,21 @@ var employeesList = [
         firstName: 'Emily',         lastName: 'Hudson',         phone: '0123456789',
         salary: 4500
 
+    },
+    {
+        firstName: 'Diana',         lastName: 'Maria Micu',         phone: '0123456789',
+        salary: 4500
     }
 ];
 
 
 function showList() {
+
+    var names = [];
+    var name_counts = [];
+    var numbers = new Array(10).fill(0);
+    var topNumbers = '';
+
     var myTable = '<table id = "mytable" class="table table-striped" border="3"><tr><th><p>First Name</p></th><th><p>Last Name</p></th><th><p>Phone</p></th><th><p>Salary</p></th><th><p">Delete</p></th><th><p>View</p></th></tr>';
 
     for(var i in employeesList) {
@@ -37,16 +47,45 @@ function showList() {
             '</td></tr>';
 
 
-    }   
+        for(var j in employeesList[i].phone){
+                numbers[employeesList[i].phone[j]] ++;
+        }
 
+        var nameIndex = names.indexOf(employeesList[i].lastName);
 
-    myTable += '<tr> <td>' + "aa"+  '</td></tr></table>';
+        if (nameIndex != -1)
+            name_counts[nameIndex] += 1;
+        else {
+            names.push(employeesList[i].lastName);
+            name_counts.push(1);
+        }
+    }
+
+    var max_name_counts = Math.max.apply(0, name_counts);
+    var max_name_counts_index = name_counts.indexOf(max_name_counts);
+    var max_name = names[max_name_counts_index];
+
+    var unique_name_counts = Math.min.apply(0, name_counts);
+    var number_unique = 0;
+    for( var i in name_counts) {
+        if( unique_name_counts == name_counts[i])
+            number_unique++;
+    }
+
+    for(var j = 0; j < 5 ; j++ ) {
+        var max = Math.max.apply(0, numbers);
+        var indexMax = numbers.indexOf(max);
+        topNumbers += indexMax + ',';
+        numbers[indexMax] = 0;
+    }
+
+    console.log(totalList());
+    var average = totalList()/employeesList.length;
+    myTable += '<tr> <td>' + max_name +  '</td><td>' + number_unique + '</td><td>'+ topNumbers.substr(0, topNumbers.length - 1) +'</td><td>' + average + '</td></tr></table>';
 
     var container = document.getElementById('listcontainer');
     container.innerHTML= myTable;
 }
-
-
 
 
 function viewRow(row) {
@@ -65,6 +104,7 @@ function totalList() {
     var showSum = '<p>' + sum + '</p>';
     var container = document.getElementById('sumId');
     container.innerHTML= showSum;
+    return sum;
 }
 
 function deleteLast() {
@@ -82,6 +122,6 @@ function addEmployee() {
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var phone = document.getElementById("phone").value;
-    var salary = document.getElementById("salary").value;
+    var salary =   Number(document.getElementById("salary").value);
     employeesList.push(new Employee(firstName, lastName, phone, salary));
 }
