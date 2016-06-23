@@ -28,12 +28,17 @@ function showList() {
     for(var i in employeesList) {
         myTable +=
             '<tr><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' +
-            employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td></tr>';
+            employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td><td>' + ' <button onclick = "stergere()"> Stergere </button> '+'</td>' +
+            '<td>'+' <button onclick = "vizualizare('+i+')"> Vizualizare </button> '+'</td></tr>' ;
     }
     myTable += '</table>';
 
     var container = document.getElementById('listcontainer');
     container.innerHTML= myTable;
+}
+
+function vizualizare(row) {
+    window.alert(employeesList[row].firstName);
 }
 
 function totalList() {
