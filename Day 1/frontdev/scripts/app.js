@@ -31,6 +31,7 @@ var employeesList = [
 
 function showList() {
 
+    /* comentariu test */
     var names = [];
     var name_counts = [];
     var numbers = new Array(10).fill(0);
