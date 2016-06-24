@@ -165,3 +165,25 @@ function sortFunction3(a, b) {
 function sortFunction4(a, b) {
     return  b.salary - a.salary ;
 }
+
+function findWord() {
+    var word = document.getElementById("wordtofind").value;
+    var newTable = '<table id = "mynewtable" class="table table-striped" border="3"><tr><th><p>First Name</p></th><th><p>Last Name</p></th><th><p>Phone</p></th><th><p>Salary</p></th><th><p">Delete</p></th><th><p>View</p></th></tr>';
+
+
+    for(var i in employeesList) {
+        if((employeesList[i].firstName.localeCompare(word) == 0) ||
+            (employeesList[i].lastName.localeCompare(word) == 0) ||
+            (employeesList[i].phone.localeCompare(word) == 0) ||
+            (employeesList[i].salary == parseInt(word))) {
+            newTable +=  '<tr id = "normalrows"><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' +
+                employeesList[i].phone + '</td><td>' + employeesList[i].salary +
+                '<td>' + '<button class =\'delrowbutton\' onclick = "deleteRow('+i+'); showList()"> Delete Row </button>'+'</td>'+
+                '<td>' + '<button class = \'viewbutton\' style="vertical-align:middle" onclick = "viewRow('+i+')"> <span> View Details </span></button>'+'</td>'+
+                '</td></tr>';
+        }
+    }
+    newTable += '</table>';
+    var container = document.getElementById('tableupdate');
+    container.innerHTML= newTable;
+}
