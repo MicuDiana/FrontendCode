@@ -131,3 +131,37 @@ function addEmployee() {
     var salary =   Number(document.getElementById("salary").value);
     employeesList.push(new Employee(firstName, lastName, phone, salary));
 }
+
+function chooseOp() {
+    var op = document.getElementById("op").value;
+    if (op == 1) {
+        employeesList.sort(sortFunction1);
+
+    }
+    else if(op == 2) {
+        employeesList.sort(sortFunction2);
+    } else if(op == 3) {
+        employeesList.sort(sortFunction3);
+    }
+    else if(op == 4) {
+        employeesList.sort(sortFunction4);
+    }
+    else {
+        alert("Not a valide sort");
+    }
+};
+
+function sortFunction1(a, b) {
+   return a.firstName.localeCompare(b.firstName);
+}
+
+function sortFunction2(a, b) {
+    return a.lastName.localeCompare(b.lastName);
+}
+
+function sortFunction3(a, b) {
+    return a.phone.localeCompare(b.phone);
+}
+function sortFunction4(a, b) {
+    return  b.salary - a.salary ;
+}
