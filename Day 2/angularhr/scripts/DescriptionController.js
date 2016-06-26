@@ -4,7 +4,8 @@
 hrApp.controller('DescriptionController', ['$rootScope', '$scope', function ($rootScope, $scope) {
     $scope.title = 'Two Way Binding Demo';
     $scope.childtemplate = 'templates/childscope.html';
-    $scope.descriptionShow = false;
+    $scope.descriptionShow = true;
+
     $scope.resetFirstVariable = function(){
         $scope.firstVariable = undefined;
     };
