@@ -66,7 +66,37 @@
         </p>
     </div>
 
+    <p>
+        Operation type:
+    </p>
+
+    <p>
+        1 - sort by first name;
+        2 - sort by last name;
+        3 - sort by phone;
+        4 - sort by salary;
+    </p>
+    <input type="text" id = "op"><br>
+
+    <button onclick = "chooseOp(); showList()">Submit</button>
 
 
+    <div class = "panel panel-default">
+        <div class = "panel-heading description">
+            Find on table:
+        </div>
+        <div class = "panel-body">
+            <div>
+                <p>
+                    <input type = "text" id = "wordtofind"> <br>
+
+                    <button onclick = "findWord()">Find</button>
+
+                </p>
+            </div>
+            <div id = "tableupdate">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

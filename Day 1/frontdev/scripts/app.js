@@ -31,6 +31,7 @@ var employeesList = [
 
 function showList() {
 
+    /* comentariu test */
     var names = [];
     var name_counts = [];
     var numbers = new Array(10).fill(0);
@@ -129,4 +130,60 @@ function addEmployee() {
     var phone = document.getElementById("phone").value;
     var salary =   Number(document.getElementById("salary").value);
     employeesList.push(new Employee(firstName, lastName, phone, salary));
+}
+
+function chooseOp() {
+    var op = document.getElementById("op").value;
+    if (op == 1) {
+        employeesList.sort(sortFunction1);
+
+    }
+    else if(op == 2) {
+        employeesList.sort(sortFunction2);
+    } else if(op == 3) {
+        employeesList.sort(sortFunction3);
+    }
+    else if(op == 4) {
+        employeesList.sort(sortFunction4);
+    }
+    else {
+        alert("Not a valide sort");
+    }
+};
+
+function sortFunction1(a, b) {
+   return a.firstName.localeCompare(b.firstName);
+}
+
+function sortFunction2(a, b) {
+    return a.lastName.localeCompare(b.lastName);
+}
+
+function sortFunction3(a, b) {
+    return a.phone.localeCompare(b.phone);
+}
+function sortFunction4(a, b) {
+    return  b.salary - a.salary ;
+}
+
+function findWord() {
+    var word = document.getElementById("wordtofind").value;
+    var newTable = '<table id = "mynewtable" class="table table-striped" border="3"><tr><th><p>First Name</p></th><th><p>Last Name</p></th><th><p>Phone</p></th><th><p>Salary</p></th><th><p">Delete</p></th><th><p>View</p></th></tr>';
+
+
+    for(var i in employeesList) {
+        if((employeesList[i].firstName.localeCompare(word) == 0) ||
+            (employeesList[i].lastName.localeCompare(word) == 0) ||
+            (employeesList[i].phone.localeCompare(word) == 0) ||
+            (employeesList[i].salary == parseInt(word))) {
+            newTable +=  '<tr id = "normalrows"><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' +
+                employeesList[i].phone + '</td><td>' + employeesList[i].salary +
+                '<td>' + '<button class =\'delrowbutton\' onclick = "deleteRow('+i+'); showList()"> Delete Row </button>'+'</td>'+
+                '<td>' + '<button class = \'viewbutton\' style="vertical-align:middle" onclick = "viewRow('+i+')"> <span> View Details </span></button>'+'</td>'+
+                '</td></tr>';
+        }
+    }
+    newTable += '</table>';
+    var container = document.getElementById('tableupdate');
+    container.innerHTML= newTable;
 }
