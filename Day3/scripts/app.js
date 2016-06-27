@@ -29,7 +29,7 @@ hrApp.config(['$routeProvider',
                 controller: 'EmployeeViewController'
             }).
         when('/user', {
-           templateUrl: 'viewa/demo/user.html',
+           templateUrl: 'views/demo/user.html',
             controller: 'EmployeeController'
         }).
         otherwise({
